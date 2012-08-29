@@ -73,15 +73,16 @@ int main()
 			x.push_back(input[i] - '0');
 		i++;
 	}
-	
+
 	// Scan from 0 to 2^n (n = size of x)
 	for (int i = 0; i < pow(2, x.size()); i++)
 	{
 		string z = dec2bin(i);
-		for (int i = z.size(); i < x.size(); i++)
+		reverse(z.begin(), z.end());
+		for (int j = z.size(); j < x.size(); j++)
 			z.push_back('0');
 		reverse(z.begin(), z.end());
-
+		
 		// Form subset of X using Z and X
 		vector< int > y;
 		y.push_back(0); // Because there's always a zero
