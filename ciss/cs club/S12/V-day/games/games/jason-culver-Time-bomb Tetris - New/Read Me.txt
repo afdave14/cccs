@@ -1,0 +1,13 @@
+run TimeBombTetris to run the game.
+
+Keys to run the game (also in help screen)
+Up - rotate clockwise
+S - rotate counterclockwise
+Left - move left
+Right - move right
+Down - move down
+Spacebar - drop
+P - pause the game
+Left Shift - switch piece to hold
+
+
