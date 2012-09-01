@@ -13,7 +13,7 @@ pygame.display.set_caption('Tetris by David Campbell Columbia College')
 
 # Music/sound
 
-music = pygame.mixer.music.load("Tetris Music video by 2pm.mp3")#"Tetris Music video by 2pm.mp3")
+#music = pygame.mixer.music.load("Tetris Music video by 2pm.mp3")
 
 lock_set = pygame.mixer.Sound("tetrissoundeffects/button-9.wav")
 lock_set.set_volume(0.3)
@@ -2814,7 +2814,7 @@ not_playing = False
 has_started = False
 sound_timer = 0
 
-pygame.mixer.music.play(-1, 0.0)
+#pygame.mixer.music.play(-1, 0.0)
 
 already_held = False
 
@@ -3747,7 +3747,7 @@ while 1:
                 pause_timer = 0
                 resume = False
                 not_playing = False
-                pygame.mixer.music.set_volume(1.0)
+                #pygame.mixer.music.set_volume(1.0)
 
 
 
@@ -4643,10 +4643,10 @@ while 1:
                 if mouse_x > 13 and mouse_x < 67 and mouse_y > 631 and mouse_y < 675:
                     if music_choice == music_on:
                         music_choice = music_off
-                        pygame.mixer.music.pause()
+                        #pygame.mixer.music.pause()
                     else:
                         music_choice = music_on                
-                        pygame.mixer.music.unpause()
+                        #pygame.mixer.music.unpause()
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.type != MOUSEBUTTONUP:
                 mouse_x, mouse_y = event.pos
@@ -4705,7 +4705,7 @@ while 1:
                     if paused == False:
                         paused = True
                         not_playing = True
-                        pygame.mixer.music.set_volume(0.25)
+                        #pygame.mixer.music.set_volume(0.25)
 
                 #if event.key == K_y:
                     #pygame.mixer.music.pause()
