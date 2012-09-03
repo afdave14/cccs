@@ -1,3 +1,4 @@
 [playlist]
-NumberOfEntries=1
-File1=file:///home/david/Downloads/CSVideo-final2.mp4
+NumberOfEntries=2
+File1=screensaver.mp4
+File2=file:///home/david/Downloads/CSVideo-final2.mp4
