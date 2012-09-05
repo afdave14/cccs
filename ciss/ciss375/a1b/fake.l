@@ -9,9 +9,10 @@ LPAREN	[\(]
 RPAREN	[\)]
 COMMA	[,]
 SEMIC	[;]
+DIG		[0-9]
 LIT_INT [0(0-9)((1-9)(0-9)*)]
 KWORD	("begin"|"end"|"read"|"write")
-ID 		[a-z]*
+ALP		[a-zA-Z_]
 WS      [ \n\t]
 
 %%
@@ -19,7 +20,7 @@ WS      [ \n\t]
 "+"|"-"|"*"|"/"|":="     { cout << "OP: " << yytext << endl; }
 (-?[1-9][0-9]*)|0		{ cout << "LIT_INT: " << yytext << endl; }
 {KWORD}			{ cout << "KWORD: " << yytext << endl; }
-{ID}			{ cout << "ID: " << yytext << endl; }
+({ALP})({ALP}|{DIG})*			{ cout << "ID: " << yytext << endl; }
 {LPAREN}		{ cout << "LPAREN" << endl; }
 {RPAREN}		{ cout << "RPAREN" << endl; }
 {COMMA}			{ cout << "COMMA" << endl; }
