@@ -1,0 +1,5 @@
+List of programs need
+---------------------
+
+-MySQL
+-Sublime Text (Download other text editing program if you wish)
