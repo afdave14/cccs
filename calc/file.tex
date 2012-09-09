@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage{amsthm,amssymb,amsmath}
+
+\newcommand{\piRsquare}{\pi r^2}		% This is my own macro !!!
+
+\title{\textbf{Chain Rule and proof}}			% used by \maketitle
+\author{David Campbell, }		% used by \maketitle
+\date{8 September, 2012}					% used by \maketitle
+
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem*{chrule}{Chain Rule}
+
+\begin{document}
+\maketitle						% automatic title!
+\begin{chrule}
+\end{chrule}
+
+Assume:
+\begin{equation*}
+f(x)=g(h(x))
+\end{equation*}
+
+Then:
+\begin{equation*}
+f\prime(x) = g\prime(x)\cdot{h}\prime(g(x))
+\end{equation*}
+
+\begin{proof}
+\begin{multline*}
+\mbox{   Let}
+\end{multline*}
+\begin{equation*}
+y=f(g(x))
+\end{equation*}
+\indent{so,}
+\begin{equation*}
+\frac{dy}{dx}=\lim_{h \to 0}\frac{f(g(x+h)-f(g(x)))}{h}
+\end{equation*}
+\newline\newline
+\indent{Now let}
+\begin{equation*}
+k=g(x+h)-g(x)\Rightarrow
+g(x+h)=k+g(x)
+\end{equation*}
+\indent{then}
+\begin{equation*}
+\frac{f(g(x+h))-f(g(x))}{h}\Rightarrow
+\frac{f(g(x)+k)-f(g(x))}{h}\Rightarrow
+\end{equation*}
+\begin{equation*}
+\frac{f(g(x)+k)-f(g(x))}{k}\cdot\frac{k}{h}\Rightarrow
+\frac{f(g(x)+k)-f(g(x))}{k}\cdot\frac{g(x+h)-g(x)}{h}
+\end{equation*}
+\newline\newline
+\indent{Now let}
+\begin{equation*}
+u=g(x)
+\end{equation*}
+\indent{so now}
+\begin{equation*}
+\frac{f(u+k)-f(u)}{k}\cdot\frac{g(x+h)-u}{h}
+\end{equation*}
+\newline\newline
+\indent{Since g is differentiable at x, it is continuous there:}
+\newline
+\begin{equation*}as\mbox{ h}\rightarrow
+0,\mbox{ g}(x+h)\rightarrow(x)\mbox{ and we must have }k\rightarrow{0}\end{equation*}
+\newline\newline
+\indent{That is}
+\begin{equation*}\lim_{h \to 0}\frac{f(g(x+h))-f(g(x))}{h}\end{equation*}
+\begin{equation*}=\lim_{k \to 0}\frac{f(u+k)-f(u)}{k}\cdot\lim_{h \to 0}\frac{g(x+h)-g(x)}{h}\end{equation*}
+\newline\newline
+\indent{So, since}
+\begin{equation*}u=g(x)\mbox{ we have }\frac{df(g(x))}{dg(x)}\cdot\frac{d(g(x))}{dx}\end{equation*}
+\indent{which is the Chain Rule.}
+\end{proof}
+
+\end{document}             % End of document.
