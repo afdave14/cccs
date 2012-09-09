@@ -5,9 +5,13 @@
 
 class View {
 public:
-	void update(DiceGame dicegame) {
-		std::cout << "Dice  : " << dicegame.die1.value << ", " << dicegame.die2.value << std::endl;
-		int sum = dicegame.die1.value + dicegame.die2.value;
+	void update(DiceGame dicegame) const
+	{
+		int fv1 = dicegame.get_d1_face_value();
+		int fv2 = dicegame.get_d2_face_value();
+		int sum = fv1 + fv2;
+
+		std::cout << "Dice  : " << fv1 << ", " << fv2 << std::endl;
 		std::cout << "Sum   : " << sum << std::endl;
 
 		std::cout << "Result: ";
