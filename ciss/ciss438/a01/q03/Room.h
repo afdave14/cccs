@@ -3,23 +3,32 @@
 
 class Room {
 public:
-	Room() {
+	Room() 
+	{
 		for (int i = 0; i < 4; i++)
 			wall[i] = -1;
 	}
 
-	int get_room(int index) {
+
+	int get_room(int index) 
+	{
 		return wall[index];
 	}
 
-	void set_room(int dir, int room) {
+
+	void set_room(int dir, int room) 
+	{
 		wall[dir] = room;
 	}
 
-	Room operator=(Room r) {
+
+	Room operator=(Room r) 
+	{
 		for (int i = 0; i < 4; i++)
 			wall[i] = r.wall[i];
 	}
+
+	
 private:
 	int wall[4];
 };
