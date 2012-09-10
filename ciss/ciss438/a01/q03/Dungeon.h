@@ -2,6 +2,7 @@
 #define DUNGEON_H
 #include <vector>
 #include "Room.h"
+#include "Person.h"
 
 
 class Dungeon {
@@ -24,8 +25,33 @@ public:
 	}
 
 
+	void place_person(Person & person, int index)
+	{
+		if (index > room.size())
+			std::cout << "WARNING: Room does not exist!" << std::endl;
+		else
+			person.set_pos(index);
+	}
+
+
+	void move_person(Person & person, int index)
+	{
+		int cp = person.get_pos();
+
+		if (index > room.size())
+		{
+			std::cout << "WARNING: You have tried to access a room that does not exist!" << std::endl;
+			return;
+		}
+		if (room[cp].get_room(0) != index && room[cp].get_room(1) != index 
+			&& room[cp].get_room(2) != index && room[cp].get_room(3) != index)
+			std::cout << "WARNING: The there is no path between the current room\nand the room you are trying to access!" << std::endl;
+		else
+			person.set_pos(index);
+	}
+
+
 private:
-	int num_rooms;
 	std::vector< Room > room;
 };
 

@@ -21,13 +21,6 @@ public:
 		wall[dir] = room;
 	}
 
-
-	Room operator=(Room r) 
-	{
-		for (int i = 0; i < 4; i++)
-			wall[i] = r.wall[i];
-	}
-
 	
 private:
 	int wall[4];
