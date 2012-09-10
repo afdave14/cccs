@@ -16,8 +16,11 @@ public:
 	{
 		if (room[index_a].get_room(dir_a) != -1 || room[index_b].get_room(dir_b) != -1)
 			std::cout << "ERROR: One or more rooms is already occupied!" << std::endl;
-		room[index_a].set_room(dir_a, index_b);
-		room[index_b].set_room(dir_b, index_a);
+		else
+		{
+			room[index_a].set_room(dir_a, index_b);
+			room[index_b].set_room(dir_b, index_a);
+		}
 	}
 
 
