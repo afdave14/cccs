@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "TimeBombTetris.py", line 13, in <module>
+    pygame.mixer.music.load('one.mid') # main game music
+pygame.error: /etc/timidity.cfg: No such file or directory
