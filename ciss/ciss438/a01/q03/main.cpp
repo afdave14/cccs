@@ -17,7 +17,7 @@ int main()
 	dungeon.join(0, 1, N, S);
 	dungeon.join(1, 2, E, W);
 	dungeon.join(2, 3, S, N);
-	dungeon.join(3, 1, S, E);
+//	dungeon.join(3, 1, S, E);
 
 	return 0;
 }
