@@ -1,17 +1,2 @@
 digraph G {
-	n2 [label = "*"];
-	n1 [label = "4"];
-	n0 [label = "2"];
-	n2->n1
-	n2->n0
-	n5 [label = "+"];
-	n4 [label = "5"];
-	n3 [label = "3"];
-	n5->n4
-	n5->n3
-	n6 [label = "+"];
-	n5 [label = "+"];
-	n6->n5
-	n6->n2
 	
-}
