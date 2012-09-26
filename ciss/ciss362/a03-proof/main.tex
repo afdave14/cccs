@@ -1,0 +1,111 @@
+\input{myassignmentpreamble}
+\input{yliow}
+\input{ciss362}
+\renewcommand\TITLE{Assignment 3}
+
+\begin{document}
+\topmatter
+
+The following are some properties of integers.
+In the following $x, y, z, w$ are integers.
+First we have the basic rules for addition:
+\begin{enumerate}
+\item [A1.] $x + y$ is an integer.
+\item [A2.] $(x + y) + z$ can be rewritten as $x + (y + z)$.
+\item [A3.] $x + (y + z)$ can be rewritten as $(x + y) + z$.
+\item [A4.] $x + (-x)$ can be rewritten as $0$.
+\item [A5.] $0$ can be rewritten as $x + (-x)$.
+\item [A6.] $0 + x$ can be rewritten as $x$.
+\item [A7.] $x$ can be rewritten as $0 + x$.
+\item [A8.] $x + 0$ can be rewritten as $x$.
+\item [A9.] $x$ can be rewritten as $x + 0$.
+\item [A10.] $x + y$ can be rewritten as $y + x$.
+\end{enumerate}
+(A = addition.)
+Now for the multiplication rules:
+\begin{enumerate}
+\item [M1.] $xy$ is an integer.
+\item [M2.] $(xy)z$ can be rewritten as $x(yz)$.
+\item [M3.] $x(yz)$ can be rewritten as $(xy)z$.
+\item [M4.] $1x$ can be rewritten as $x$.
+\item [M5.] $x$ can be rewritten as $1x$.
+\item [M6.] $x1$ can be rewritten as $x$.
+\item [M7.] $x$ can be rewritten as $x1$.
+\item [M8.] $xy$ can be rewritten as $yx$.
+\end{enumerate}
+(M = multiplication.)
+Here are the rules involving both addition and multiplication
+\begin{enumerate}
+\item [AM1.] $x(y + z)$ can be rewritten as $xy + xz$
+\item [AM2.] $xy + xz$ can be rewritten as $x(y + z)$
+\end{enumerate}
+(AM = addition and multiplication,)
+Here are some facts that you may assume.
+There are facts that can be derived from the above rules
+\begin{enumerate}
+\item [F1.] If $x = y$, then $xz = yz$.
+\item [F3.] If $x = y$, then $x + z = y + z$.
+\item [F3.] $0x$ can be replaced by $0$.
+\item [F4.] $x0$ can be replaced by $0$.
+\item [F5.] If $x = y$ and $z = w$, then $x + z = y + w$.
+\end{enumerate}
+(F = facts.)
+We want to prove some basic facts divisibility.
+Given two integer $a, b$ we say that $a$ divides $b$, and we write $a \mid b$
+is there is an integer $c$ such that $ac = b$.
+This of course means that
+
+\begin{enumerate}
+\item [D1] \lq\lq $a \mid b$'' 
+           can be replaced by \lq\lq $ac = b$ for some integer $c$''.
+\item [D2] \lq\lq $ac = b$ for some integer $c$'' 
+           can be replaced by \lq\lq $a \mid b$''.
+\end{enumerate}
+(D = definition.)
+
+Several proofs are already provided.
+make sure you study them to see how I want you to write the proofs.
+I'v simplified the proofs to make it easier to understand so that
+we're not overly caught up with formal logic.
+
+\newpage
+
+Q1. Let $a$ be an integer. Prove that $1 \mid a$.
+
+\SOLUTION
+\input{q1.tex}
+\newpage
+
+
+Q2. Let $a$ be an integer. Prove that $a \mid a$.
+
+\SOLUTION
+\input{q2.tex}
+\newpage
+
+
+Q3. Let $a,b,c$ be integers.
+Prove that if $a \mid b$, then $a \mid (bc)$.
+
+\SOLUTION
+\input{q3.tex}
+\newpage
+
+
+Q4. Let $a,b,c$ be integers.
+Prove that if $a \mid b$ and $b \mid c$, then $a \mid c$.
+
+\SOLUTION
+\input{q4.tex}
+\newpage
+
+
+Q5. Let $a,b,c$ be integers.
+Prove that if $a \mid b$ and $a \mid c$, then $a \mid (b + c)$.
+
+\SOLUTION
+\input{q5.tex}
+\newpage
+
+
+\end{document}

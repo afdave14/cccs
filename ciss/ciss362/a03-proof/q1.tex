@@ -1,0 +1,74 @@
+\begin{align*}
+           1 a &= a                                     & & \text{by M4} \\
+\THEREFORE 1 c &= a \text{ for some integer $c (= a)$ } & & \\
+\THEREFORE 1   &\mid a                                  & & \text{by D2}
+\end{align*}
+
+{\bf Note.}
+The above shows you how to take a fact and produce another that involves
+\lq\lq for some ....''.
+Basically if you have a propositional formula 
+$P(x)$ where $x$ is a variable, 
+then if $P(v)$ is true where $v$ is a value, then
+\lq\lq $P(x)$ is true for some value for x'' must also be true (duh).
+It's pretty obvious right?
+
+It's the same as saying if 
+\[
+\text{\lq\lq I have a pebble in my pocket''}
+\]
+then of course 
+\[
+\text{ \lq\lq I have an $x$ in my pocket for some $x$. }
+\]
+Right?
+This is an \lq\lq axiom'' or rule in logic meaning to say
+that this way of deducing a new fact is allowed because it models
+the way human beings think.
+Because this axiom produces a new fact, it's also
+called an {\bf inference rule}.
+
+Note that the \lq\lq opposite'' of that is not true!
+Just because I can say that \lq\lq 
+I have an $x$ in my pocket
+ for some $x$'',
+it does not mean that \lq\lq I have a pebble in my pocket''
+because what I have in my pocket might very well be my pet lizard.
+
+This is basically what you see in your discrete math class
+as an axiom in logic:
+\begin{align*}
+           &P(a) \\
+\THEREFORE &\exists x (P(x))
+\end{align*}
+This inference rule is called existential generalization.
+From now on we'll call it EG.
+So you should write the proof like this:
+\begin{align*}
+           1 a &= a                                     & & \text{by M4} \\
+\THEREFORE 1 c &= a \text{ for some integer $c (= a)$ } & & \text{by EG} \\
+\THEREFORE 1   &\mid a                                  & & \text{by D2}
+\end{align*}
+
+{\bf Note.}
+Note that the only reason why proofs at an undergraduate level are
+written so tediously is because you have to learn how to think and
+argue logically and precisely.
+The above format allows you to check the correctness of your logic.
+Papers written even in research journals are actually {\it not} 
+written in the above format. 
+For instance in a paper one would write:
+\begin{enumerate}
+\item[]
+{\it Since 1a = a, we have $1c = a$ for some integer $c$
+and hence by definition $1 \mid a$, i.e. $1$ divides $a$.}
+\end{enumerate}
+or even
+\begin{enumerate}
+\item[] {\it Since 1a = a, by definition $1$ divides $a$.}
+\end{enumerate}
+
+{\bf Note.}
+The application of \lq\lq rule'' D1 or D2 is not a deduction
+(or inference).
+It's just a linguistic translation of notation and definition.
