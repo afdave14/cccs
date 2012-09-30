@@ -1,5 +1,5 @@
 infix : scanner.c parser.c parser.h file.cpp
-	g++ scanner.c parser.c file.cpp -o a4
+	g++ scanner.c parser.c file.cpp -o infix2tree
 
 scanner.c : file.l
 	flex file.l
