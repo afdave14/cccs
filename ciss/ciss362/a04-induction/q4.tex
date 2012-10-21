@@ -5,12 +5,12 @@ We have the following:
            |x| &= n + 1  & & \tag{A} \\ 
 \THEREFORE |x| &\geq 1 \\
 \THEREFORE |x| &\neq 0 \\
-\THEREFORE x &\neq ? & & \text{by Q2} \\
+\THEREFORE x &\neq \ep & & \text{by Q2} \\
 \THEREFORE x &= x'x'' \text{ for some } x' \in \Sigma, x'' \in \Sigma^* 
-           & & \text{by ?} 
+           & & \text{by C8} 
            \tag{B} \\
 \THEREFORE |x| &= 1 + |x''| \text{ for some } x'' \in \Sigma^*
-           & & \text{by ?} \\
+           & & \text{by L2} \\
 \THEREFORE n + 1 &= 1 + |x''| \text{ for some } x'' \in \Sigma^*
            & & \text{by A} \\
 \THEREFORE |x''| &= n \text{ for some } x'' \in \Sigma^*
@@ -20,13 +20,13 @@ Therefore for some $x' \in \Sigma$ and $x'' \in \Sigma^*$
 we have the following:
 \begin{align*}
 (xy)^R
-&= (?x'' y)^R                                   & & \text{by (B)} \\
-&= (? \cdot x''y)^R                                               \\
-&= (x''y)^R \cdot (?)^R                         & & \text{by $P(1)$}\\
-&= \left( y^R \cdot (x'')^R \right) \cdot (?)^R & & \text{by $P(n)$} \\
-&= y^R \cdot \left( (x'')^R \cdot (?)^R \right) & & \text{by ?}\\
-&= y^R \cdot \left( ?x'' \right)^R              & & \text{by ?}\\
-&= ?^R \cdot ?^R                                & & \text{by (B)} 
+&= (x'x'' y)^R                                   & & \text{by (B)} \\
+&= (x' \cdot x''y)^R                                               \\
+&= (x''y)^R \cdot (x')^R                         & & \text{by $P(1)$}\\
+&= \left( y^R \cdot (x'')^R \right) \cdot (x')^R & & \text{by $P(n)$} \\
+&= y^R \cdot \left( (x'')^R \cdot (x')^R \right) & & \text{by C2}\\
+&= y^R \cdot \left( x'x'' \right)^R              & & \text{by R2}\\
+&= y^R \cdot y^R                                & & \text{by (B)} 
 \end{align*}
 Hence $P(n+1)$ holds.
 QED.
