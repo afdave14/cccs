@@ -1,0 +1,88 @@
+\input{myassignmentpreamble}
+\input{yliow}
+\input{ciss362}
+\renewcommand\TITLE{Assignment 22}
+\renewcommand\AUTHOR{John Doe}
+\renewcommand\EMAIL{jdoe@jdoe.com}
+
+\begin{document}
+\topmatter
+
+
+The transition of a PDA looks like this:
+\[
+(a, b \rightarrow c)
+\]
+which means: \lq\lq read $a$, replace $b$ on the top of the stack with 
+$c$, and go to the next state''.
+Note that $a$ or $b$ or $c$ can be $\ep$.
+For instance this is a valid transition:
+\[
+(\ep, \ep \rightarrow \ep)
+\]
+which means \lq\lq don't any input, don't change the stack, go to the 
+next state.''
+The transition
+\[
+(a, \ep \rightarrow b)
+\]
+means \lq\lq  read $a$, put $b$ on top of the stack, and go to the next state
+''.
+The transition
+\[
+(a, b \rightarrow \ep)
+\]
+means \lq\lq  read $a$, remove $b$ from the top of the stack, and go to the 
+next state''.
+Etc.
+
+
+The characters used in the stack can be different from the 
+input characters.
+For instance you have already seen that we can use the \$ character to mark
+the bottom of the stack.
+If $\Sigma$ denotes the input characters and $\Gamma$ denotes the 
+characters used in the stack, then
+a transition looks like this
+\[
+(a, b \rightarrow c)
+\]
+where $a \in \Sigma \cup \{\ep\}$ and $b,c \in \Gamma \cup \{\ep\}$.
+
+\newpage 
+
+Q1. Construct, if possible, a PDA that accepts
+\[
+L = \{a^m b^n \mid m \neq n\}
+\]
+
+[HINT: Rewrite the language as a union of two, design two PDAs, and
+finally construct a PDA that accepts the union.]
+
+\SOLUTION
+
+\input{q1.tex}\newpage
+
+
+
+Q2. Construct, if possible, a PDA that accepts
+\[
+L = \{a^m b^m a^n b^n \mid m \geq 0, n \geq 0\}
+\]
+
+[HINT: Rewrite the language as a concatenation of two,
+design two PDAs, finally construct a PDA for the concatenation.]
+
+
+\SOLUTION
+
+\input{q2.tex}
+
+\newpage
+
+
+
+
+
+
+\end{document}
