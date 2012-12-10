@@ -131,9 +131,10 @@ struct Block : public AST
 
 struct Assign : public AST
 {
-    Assign(AST * id, AST * e) : name(id), expr(e) { }
+    Assign(Id * id, AST * e) : name(id), expr(e) { }
     virtual void accept(ASTVisitor *);
-    AST *name, *expr;
+    Id * name;
+    AST * expr;
 };
 
 
@@ -143,8 +144,8 @@ struct Declaration : public AST
 {
     Declaration(Id * id, AST * e) : name(id), expr(e) { }
     virtual void accept(ASTVisitor *);
-    Id *name;
-    AST *expr;
+    Id * name;
+    AST * expr;
 };
 
 
