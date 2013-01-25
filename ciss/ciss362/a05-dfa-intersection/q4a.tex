@@ -1,0 +1,96 @@
+
+4(a)
+Let 
+\[
+L = \{w \mid \text{$w$ has at least three $a$'s and at least two $b$'s}\}
+\]
+Note that if 
+\begin{align*}
+L' &= \{w \mid \text{$w$ has at least three $a$'s} \} \\
+L'' &= \{w \mid \text{$w$ has at least two $b$'s} \}
+\end{align*}
+then
+\[
+L = L' \cap L''
+\]
+Therefore we construct DFAs for $L'$ and $L''$ first.
+
+The following $M'$ is a DFA such that $L(M') = L'$:
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial]   (q_0)          {$q'_0$};
+\node[state]           (q_1) at (2,0) {$q'_1$};
+\node[state]           (q_2) at (4,0) {$q'_2$};
+\node[state,accepting] (q_3) at (6,0) {$q'_3$};
+
+\path[->] (q_0) edge node {$a$} (q_1)
+          (q_0) edge [loop above] node {$b$} ()
+          (q_1) edge node {$a$} (q_2)
+          (q_1) edge [loop above] node {$b$} ()
+          (q_2) edge node {$a$} (q_3)
+          (q_2) edge [loop above] node {$b$} ()
+          (q_3) edge [loop above] node {$a, b$} ()
+;
+\end{tikzpicture}
+\end{center}
+The following $M''$ is a DFA such that $L(M'') = L''$:
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial]   (q_0)          {$q''_0$};
+\node[state]           (q_1) at (2,0) {$q''_1$};
+\node[state,accepting] (q_2) at (4,0) {$q''_2$};
+
+\path[->] (q_0) edge node {$b$} (q_1)
+          (q_0) edge [loop above] node {$a$} ()
+          (q_1) edge node {$b$} (q_2)
+          (q_1) edge [loop above] node {$a$} ()
+          (q_2) edge [loop above] node {$a, b$} ()
+;
+\end{tikzpicture}
+\end{center}
+The following is a DFA $M$ such that $L(M) = L(M') \cap L(M'')$:
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial]   (q_00)          {$(q'_0, q''_0)$};
+\node[state]           (q_10) at (3,0) {$(q'_1, q''_0)$};
+\node[state]           (q_20) at (6,0) {$(q'_2, q''_0)$};
+\node[state]           (q_30) at (9,0) {$(q'_3, q''_0)$};
+\node[state]           (q_01) at (0,-4) {$(q'_0, q''_1)$};
+\node[state]           (q_11) at (3,-4) {$(q'_1, q''_1)$};
+\node[state]           (q_21) at (6,-4) {$(q'_2, q''_1)$};
+\node[state]           (q_31) at (9,-4) {$(q'_3, q''_1)$};
+\node[state]           (q_02) at (0,-8) {$(q'_0, q''_2)$};
+\node[state]           (q_12) at (3,-8) {$(q'_1, q''_2)$};
+\node[state]           (q_22) at (6,-8) {$(q'_2, q''_2)$};
+\node[state,accepting] (q_32) at (9,-8) {$(q'_3, q''_2)$};
+
+\path[->] (q_00) edge node {$a$} (q_10)
+          (q_00) edge node {$b$} (q_01)
+          (q_10) edge node {$a$} (q_20)
+          (q_10) edge node {$b$} (q_11)
+          (q_20) edge node {$a$} (q_30)
+          (q_20) edge node {$b$} (q_21)
+          (q_30) edge [loop right] node {$a$} ()
+          (q_30) edge node {$b$} (q_31)
+
+          (q_01) edge node {$a$} (q_11)
+          (q_01) edge node {$b$} (q_02)
+          (q_11) edge node {$a$} (q_21)
+          (q_11) edge node {$b$} (q_12)
+          (q_21) edge node {$a$} (q_31)
+          (q_21) edge node {$b$} (q_22)
+          (q_31) edge [loop right] node {$a$} ()
+          (q_31) edge node {$b$} (q_32)
+
+          (q_02) edge node {$a$} (q_12)
+          (q_02) edge [loop below] node {$b$} ()
+          (q_12) edge node {$a$} (q_22)
+          (q_12) edge [loop below] node {$b$} ()
+          (q_22) edge node {$a$} (q_32)
+          (q_22) edge [loop below] node {$b$} ()
+          (q_32) edge [loop right] node {$a, b$} ()
+
+;
+\end{tikzpicture}
+\end{center}
+

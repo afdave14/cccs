@@ -1,0 +1,72 @@
+
+4(g)
+Let 
+\[
+L = \{w \mid \text{$w$ has even length and odd number of $a$'s}\}
+\]
+Note that if 
+\begin{align*}
+L' &= \{w \mid \text{$w$ has even length} \} \\
+L'' &= \{w \mid \text{$w$ has odd number of $a$'s} \}
+\end{align*}
+then
+\[
+L = L' \cap L''
+\]
+Therefore we construct DFAs for $L'$ and $L''$ first.
+
+The following $M'$ is a DFA such that $L(M') = L'$:
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial,accepting] (q_0)          {$q'_0$};
+\node[state]                   (q_1) at (2,0) {$q'_1$};
+
+\path[->] (q_0) edge [bend left]  node {$a,b$} (q_1)
+          (q_1) edge [bend left]  node {$a,b$} (q_0)
+;
+\end{tikzpicture}
+\end{center}
+
+The following $M''$ is a DFA such that $L(M'') = L''$:
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial]   (q_0)          {$q''_0$};
+\node[state,accepting] (q_1) at (2,0) {$q''_1$};
+
+\path[->] (q_0) edge [bend left]  node {$a$} (q_1)
+          (q_0) edge [loop above] node {$b$} ()
+
+          (q_1) edge [bend left]  node {$a$} (q_0)
+          (q_1) edge [loop above] node {$b$} ()
+
+;
+\end{tikzpicture}
+\end{center}
+
+The following is a DFA $M$ such that $L(M) = L(M') \cap L(M'')$:
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial]   (q_00)          {$(q'_0, q''_0)$};
+\node[state]           (q_10) at (6,0) {$(q'_1, q''_0)$};
+
+\node[state,accepting] (q_01) at (0,-6) {$(q'_0, q''_1)$};
+\node[state]           (q_11) at (6,-6) {$(q'_1, q''_1)$};
+
+
+\path[->] 
+(q_00) edge [bend left=10,pos=0.9] node {$a$} (q_11)
+(q_00) edge [bend left=10] node {$b$} (q_10)
+
+(q_10) edge [bend left=10,pos=0.1] node {$a$} (q_01)
+(q_10) edge [bend left=10,below]  node {$b$} (q_00)
+
+(q_01) edge [bend left=10, pos=0.1] node {$a$} (q_10)
+(q_01) edge [bend right=10,below] node {$b$} (q_11)
+
+(q_11) edge [bend right=10,above] node {$b$} (q_01)
+(q_11) edge [bend left=10,pos=0.9] node {$a$} (q_00)
+          
+; 
+\end{tikzpicture}
+\end{center}
+

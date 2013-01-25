@@ -1,0 +1,38 @@
+Modify the file \verb!q03.tex!.
+
+\begin{console}
+automata: nfa
+
+sigma: a, b, e
+
+states: q0, q1, q2, q3, q4, q5, q6, q7, q8, q9, q10
+
+start: q0
+
+accept: q0, q6
+
+transitions:
+qo, e, q1
+q0, e, q3
+q0, e, q6
+
+q1, a, q2
+
+q2, e, q10
+
+q3, a, q4
+
+q4, b, q5
+
+q5, e, q10
+
+q6, b, q7
+
+q7, a, q8
+
+q8, b, q9
+
+q9, e, q10
+
+q10, e, q0
+\end{console}

@@ -1,0 +1,427 @@
+\input{myassignmentpreamble}
+\input{yliow}
+\input{ciss362}
+
+\newcommand\TITLE{Test 1 Part B}
+\newcommand\AUTHOR{John Doe}
+\newcommand\EMAIL{jdoe@jdoe.com}
+
+\begin{document}
+\topmatter
+
+
+We fix an alphabet $\Sigma$ throughout.
+The following are facts you have already seen.
+
+{\bf Concatenation.}
+For the following $x,y,z$ are words in $\Sigma^*$.
+\begin{enumerate}
+\item[C1] $xy$ is a word in $\Sigma^*$
+\item[C2] $(xy)z$ can be rewritten as $x(yz)$
+\item[C3] $x(yz)$ can be rewritten as $(xy)z$
+\item[C4] $\ep x$ can be rewritten as $x$
+\item[C5] $x$ can be rewritten as $\ep x$
+\item[C6] $x\ep$ can be rewritten as $x$
+\item[C7] $x$ can be rewritten as $x\ep$
+\item[C8] If $x \in \Sigma^*$ is not $\ep$, then 
+$x = x'x''$ for some $x' \in \Sigma$ and $x'' \in \Sigma^*$.
+\end{enumerate}
+
+{\bf Length function.}
+Let $x$ be a word over $\Sigma^*$.
+\begin{enumerate}
+\item[L1] If $x = \ep$, then $|x| = 0$.
+\item[L2] If $x \neq \ep$, then $x = x' \cdot x''$ where
+$x \in \Sigma$ (i.e. $x$ is a symbol in our alphabet)
+and $x'' \in \Sigma^*$ (i.e. $x''$ is a word over $\Sigma$).
+Then $|x| = 1 + |x''|$.
+\item[L3] $|x| \geq 0$
+\item[L4] $|x|$ is an integer 
+\item[L5] If $|x| = 0$, then $x = \ep$.
+\item[L6] $|x| \neq 0 \iff x \neq \ep$
+\end{enumerate}
+L5-L6 were proven in an earlier assignment.
+L6 is essentially L1 and L5.
+
+
+{\bf Reverse function.} 
+Let $x \in \Sigma^*$.
+\begin{enumerate}
+\item[R1] If $x = \ep$, then $\ep^R = \ep$.
+\item[R2] If $x \neq \ep$, then $x = x'\cdot x''$ where
+$x' \in \Sigma$ ($x'$ is a symbol in our alphabet $\Sigma$) 
+and $x'' \in \Sigma^*$ (i.e., $x''$ is a word over $\Sigma$) 
+and $x^R = (x'')^R \cdot x'$.
+\item[R3] If $x,y$ are words in $\Sigma^*$, then
+$(xy)^R = y^R x^R$
+\end{enumerate}
+R3 was proven in an earlier assignment.
+
+\newpage
+
+Read this document very carefully.
+I'll be using very formal notation for DFA.
+Remember that I prefer to write the formal definition of a DFA
+as $(\Sigma, Q, q_0, \delta, F)$.
+This is slightly different from your textbook which begins with 
+$Q$ instead. 
+
+The goal of this assignment is to formalize acceptance.
+Our definition of DFA acceptance, i.e., 
+\lq\lq start at $q_0$, read one character at a time left-to-right,
+following the transition edge; if you stop at an accept state then
+the word is accepted, otherwise it's not''
+is correct but not precise enough for a clear proof.
+
+We will not formalize the above definition.
+
+First of all the action of \lq\lq follow the transitions''
+is done using the edges (pictorially) or using the transition
+function. 
+The fact
+\[
+\text{\lq\lq at state $q$ if we read symbol $a$ we go to $q'$''}
+\]
+is the same as
+\[
+\delta(q, a) = q'
+\] 
+The two are the same.
+However the transition function is better suited for a clear
+and formally correct proof.
+
+The transition function only describes one step in the computation.
+Here \lq\lq computation'' means \lq\lq go from one state to another''.
+Acceptance is carrying out a sequence of computations.
+So the first thing is to extend the concept of one computation
+to a sequence to computation until all symbols in a string is 
+completely processed.
+We will therefore define a function
+\[
+\delta^*
+\]
+(In some books this is denoted $\widehat{\delta}$.)
+Basically this is what we want $\delta^*$ to do:
+Suppose a $\delta$ function does this for a word $aba$:
+\begin{align*}
+\delta(q_0, a) &= q_5 \\
+\delta(q_5, b) &= q_3 \\
+\delta(q_3, a) &= q_2 \\
+\end{align*}
+and $q_2$ is an accept state, then we accept $aba$.
+Pictorially this means
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial]   (q_0)          {$q_0$};
+\node[state]           (q_5) at (2,0) {$q_5$};
+\node[state]           (q_3) at (4,0) {$q_3$};
+\node[state,accepting] (q_2) at (6,0) {$q_2$};
+
+\path[->] (q_0) edge node {$a$} (q_5)
+          (q_5) edge node {$b$} (q_3)
+          (q_3) edge node {$a$} (q_2)
+;
+\end{tikzpicture}
+\end{center}
+(other parts of the DFA diagram is of course not shown.)
+If that's the case, then for this $\delta$ we want the $\delta^*$ to 
+do this
+\[
+\delta^*(q_0, aba) = q_2
+\]
+In other words, $\delta^*$ basically computes the resulting state
+after consuming all the symbols in the word.
+
+Obviously given a $\delta$, the definition of $\delta^*$ depends on $\delta$.
+Specifically, we will define it recursively.
+First if there's nothing to read of course we have
+\[
+\delta^*(q, \ep) = q
+\]
+for every state $q$ in the DFA.
+We have already handled the case where $|x| = 0$.
+Therefore we only need to look at the case where $|x| > 0$.
+In that case $x = x'x''$ where $x'$ is a symbol and $x''$ is a word.
+To model the behavior of 
+\lq\lq processing one symbol at a time going left-to-right
+and following $\delta$'', the only reasonble definition of $\delta^*$ is
+\[
+\delta^*(q, x'x'') = \delta^* \biggl( \delta(q,x'), \,\,\, x''\biggr)
+\]
+[If there's exactly one symbol to process, of course $\delta^*$ is exactly
+the same as $\delta$:
+\[
+\delta^*(q, c) = \delta(q, c)
+\]
+for any state $q$ and any symbol $c$ in the alphabet of the DFA.
+You will be proving this later.]
+Finally we want to define
+\[
+\delta^*(q, x)
+\]
+where $x$ is a a word.
+
+Make sure you really understand the above definition!
+
+In summary, given a function
+\[
+\delta : Q \times \Sigma \rightarrow Q
+\]
+we define the corresponding $\delta^*$ to be the function
+\[
+\delta^* : Q \times \Sigma^* \rightarrow Q
+\]
+by
+\[
+\delta^*(q, x) = 
+\begin{cases}
+q            & \text{ if $x = \ep$} \\
+\delta^* ( \delta(q,x'), x'')
+             & \text{ if } x = x'x'',x' \in \Sigma, x'' \in \Sigma^* \\
+\end{cases}
+\]
+The function $\delta^*$ is defined recursively in terms of $\delta$.
+
+Let me state formally the properties of $\delta^*$ for the sake of your
+proof writing:
+
+Let $\delta : Q \times \Sigma \rightarrow Q$ be a function.
+We define an associated function
+\[
+\delta^* : Q \times \Sigma^* \rightarrow Q
+\]
+recursively so that:
+\begin{enumerate}
+\item[DS1] $\delta^*(q, \ep)$ can be rewritten as $q$.
+\item[DS2] $q$ can be rewritten as $\delta^*(q, \ep)$.
+\item[DS3] If $x' \in \Sigma$ and $x'' \in \Sigma^*$, then
+            $\delta^*(q, x'x'')$ can be rewritten as 
+          $\delta^*(\delta(q, x'), x'')$.
+\item[DS4] If $x' \in \Sigma$ and $x'' \in \Sigma^*$, then
+          $\delta^*(\delta(q, x'), x'')$
+          can be rewritten as 
+          $\delta^*(q, x'x'')$.
+\end{enumerate}
+
+Your are strongly advised to test your understanding of the above
+definition of $\delta^*$ with the following example:
+
+You are given the following DFA $M$ where
+$\Sigma = \{a, b\}$, $Q = \{q_0, q_1, q_2, q_3\}$, the initial state is $q_0$,
+$F = \{q_0, q_1, q_2\}$, and $\delta$ is given by
+\begin{align*}
+\delta(q_0, a) &= q_0 \\
+\delta(q_0, b) &= q_1 \\
+\delta(q_1, a) &= q_0 \\
+\delta(q_1, b) &= q_2 \\
+\delta(q_2, a) &= q_0 \\
+\delta(q_2, b) &= q_3 \\
+\delta(q_3, a) &= q_3 \\
+\delta(q_3, b) &= q_3 \\
+\end{align*}
+Compute $\delta^*(q_0, abab)$, $\delta^*(q_1, abbb)$ using DS1-DS4
+and of course
+$\delta$, listing down carefully which of the above DS1-DS4 you are using for
+each step of the computation.
+When you're done, draw the DFA and check that your computation is correct.
+
+Again, just like the case of the reverse function and the length function,
+you can very quickly write a $\delta^*$ function given a $\delta$.
+For instance in C++, if states are represented using integers, it might
+look like this where 
+verb!delta! is a transition function already defined:
+\begin{Verbatim}[frame=single]
+int delta(int q, char c)
+{
+    ...
+}
+
+int deltastar(int q, const char s[])
+{
+    if (strlen(s) == 0) 
+    {
+        return q;
+    }
+    else 
+    {
+        return deltastar(delta(q, s[0]), s + 1);
+    }
+}
+\end{Verbatim}
+
+\newpage
+{\bf Acceptance}
+
+With this precise definition of $\delta^*$ that computes the resulting
+state for a word (and not just a symbol), we can formalize the concept of 
+acceptance: A word $x \in \Sigma^*$ is accepted by a DFA 
+$M = (\Sigma, Q, q_0, \delta, F)$ if
+\[
+\delta^*(q_0, x) \in F
+\]
+This acceptance criteria is defined in terms of our $\delta^*$
+which depends on $\delta$.
+This is now formally our definiton of acceptance.
+From this we can quickly define the concept of the language accepted
+by our DFA $M$:
+\[
+L(M) = \{x \in \Sigma^* \mid \delta^*(q_0, x) \in F \}
+\]
+Let's list the following for proof writing.
+Given a DFA $M = (\Sigma, Q, q_0, \delta, F)$, we have:
+\begin{enumerate}
+\item[AC1] \lq\lq $x$ is accepted by $M$''
+          can be replaced by $\delta^*(q_0, \ep) \in F$.
+\item[AC2] $\delta^*(q_0, \ep) \in F$
+          can be replaced by
+          \lq\lq $x$ is accepted by $M$''
+\item[AC3] $L(M)$ can be replaced by $\{x \mid \delta^*(q_0, x) \in F \}$
+\item[AC4] $\{x \mid \delta^*(q_0, x) \in F \}$ can be replaced by $L(M)$
+\end{enumerate}
+
+
+
+
+\newpage
+Here's a warmup:
+
+Q1. Let $(\Sigma, Q, q_0, \delta, F)$ be a DFA and $q \in Q$ be fixed. 
+Prove that if $x,y \in \Sigma^*$, then
+\[
+\delta^*(q, xy) = \delta^*(\delta^*(q, x), y)
+\]
+[Make sure you state the $P(n)$, the smallest value of $n$ you need
+for $P(n)$ to hold.
+Make sure you prove the base case.
+Make sure you prove the inductive case.
+Make sure your proof is clear, concise, correct and refers to 
+only basic axioms/properties listed.
+Follow the format of previous proof problems.
+Proper math writing includes proper writing in general.
+
+If you need some fact but can't prove it, you might ask if I'm
+willing to include it as a list of facts that you can quote.
+That's not a promise that I'll say yes.
+]
+
+\SOLUTION
+\input{q1.tex}
+
+\newpage
+Let $M' = (\Sigma, Q', q_0' \delta', F')$
+and $M'' = (\Sigma, Q', q_0' \delta', F')$ be two DFAs.
+From the$\delta'$ from $M'$,  we have $\delta'^*$.
+Likewise we have a $\delta''^*$ from the $\delta''$ of $M''$.
+In both the union and intersection construction we define
+a $\delta : (Q' \times Q'') \times \Sigma \rightarrow (Q' \times Q'')$
+to be
+\[
+\delta((q',q''), c) = (\delta'(q', c), \delta''(q'',c))
+\]
+for $q' \in Q'$, $q'' \in Q''$, and $c \in \Sigma$.
+Note that $\delta$ depends on $\delta', \delta''$.
+
+This involves the cross product. Here are some basic facts about the
+cross product:
+\begin{enumerate}
+\item[CP1] $(x,y) \in X \times Y$ can be replaced by
+           $x \in X, y \in Y$.
+\item[CP2] $x \in X, y \in Y$
+           can be replaced by
+           $(x,y) \in X \times Y$.
+\item[CP3] $(x,y) = (x',y')$
+           can be replaced by 
+           $x=x', y=y'$
+\item[CP4] $x=x', y=y'$
+           can be replaced by 
+           $(x,y) = (x',y')$.
+\end{enumerate}
+You will be proving something about the intersection construction
+so here are some basic things about intersections:
+\begin{enumerate}
+\item[IN1] $x \in X \cap Y$ 
+           can be replaced by
+           $x \in X, x \in Y$.
+\item[IN2] $x \in X, x \in Y$
+           can be replaced by
+           $x \in X \cap Y$
+\end{enumerate}
+[Don't forget that in CS and Math, a comma \lq\lq,'' means \lq\lq and''.]
+
+\newpage
+Q2. Assuming the given $M', M''$ above. 
+{\bf 
+Suppose $\delta'$ is the transition for $M'$
+and $\delta''$ is the transition function for $M''$.
+We define $\delta$ by 
+\[
+\delta((q', q''), c)
+\]
+where $q'\in Q'$, $q'' \in Q''$ and $c \in \Sigma$.
+Associated to $\delta', \delta'', \delta''$, 
+we have the functions $\delta'^*, \delta''^*, \delta^*$ respectively.
+}
+Prove that
+if $q' \in Q', q'' \in Q'', x \in \Sigma^*$, then
+\[
+\delta^*((q', q''), x)
+=
+(
+\delta'^*(q', x),
+\delta''^*(q', x)
+)
+\]
+[Formulate a $P(n)$ and prove the above by mathematical induction.
+
+{\bf Although not necessary, it might be a good idea to prove the following
+Lemma: If $\delta$ is any transition function and $\delta^*$
+the associated function, then for $c \in \Sigma$, we have
+$\delta^*(q, c) = \delta(q, c)$ for any $q \in Q$.
+A Lemma is a small fact that is used in a more important theorem.
+It's equivalent to the helper function for programmers.
+The proof of this Lemma is about 3 computations long.
+The Lemma is used twice in the proof of the result, so if you 
+don't have this fact, you would have to more or less go through the 
+proof of the Lemma twice in the proof of the actual statement that
+we want to prove.
+So the Lemma simply allows us to cleanup the main proof.
+}]
+
+\SOLUTION
+\input{q2.tex}
+
+
+
+\newpage
+With the result in Q2 we can now prove that the intersection
+construction 
+is absolutely true for any pair of DFAs in the following sense:
+
+Q3. 
+Let $M' = (\Sigma, Q', q_0', \delta', F')$
+and $M'' = (\Sigma, Q'', q_0'', \delta'', F'')$ be two DFAs.
+Define a new DFA $M = (\Sigma, Q' \times Q'', (q'_0, q''_0), 
+\delta, F' \times F'')$ where
+\[
+\delta((q',q''), c) = (\delta'(q', c), \delta''(q'',c))
+\]
+for $q' \in Q'$, $q'' \in Q''$, and $c \in \Sigma$.
+Then
+\[
+L(M) = L(M') \cap L(M'')
+\]
+
+[Recall: Two sets $X$ and and $Y$ are the same i.e. $X = Y$,
+if $X \subseteq Y$ and $Y \subseteq X$.
+This is the formal definition of set equality.
+To prove that $X \subseteq Y$, you need to prove
+$x \in X \implies x \in Y$.
+To prove that $Y \subseteq X$, you need to prove 
+$x \in Y \implies x \in X$.
+]
+
+
+\SOLUTION
+\input{q3.tex}
+
+\end{document}

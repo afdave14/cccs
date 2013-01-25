@@ -1,0 +1,44 @@
+Modify \verb!q04.tex!.
+
+\begin{console}
+False.
+
+Let NFA accept nothing
+automata: nfa
+sigma: a, b
+states: q0
+start: q0
+accept:
+transition:
+
+Then, the compliment of this NFA accepts the empty string (e)
+automata: nfa
+sigma: a, b
+states: q0
+start: q0
+accept: q0
+transition:
+
+The DFA for the original language is
+automata: dfa
+sigma: a, b
+states: q0
+start: q0
+accept:
+transition:
+q0, a, q0
+q0, b, q0
+
+The compliment of the DFA accepts a*b*
+automata: dfa
+sigma: a, b
+states: q0
+start: q0
+accept: a0
+transition:
+q0, a, q0
+q0, b, q0
+
+Then the compliment of the NFA doesn't equal the compliment of the DFA,
+and therefore this operation isn't the same for NFA as DFA
+\end{console}

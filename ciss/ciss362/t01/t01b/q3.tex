@@ -1,0 +1,37 @@
+Let $x \in \Sigma^*$.
+If $x\in L(M)$ we have the following:
+\begin{align*}
+           x &\in L(M)                                                  \\
+\THEREFORE \delta^*((q'_0,q''_0), x) &\in F' \times F'' & & \text{by AC1} \\
+\THEREFORE \delta'^*(a',x),\delta''^*(q'',x) &\in F' \times F''                         & & \text{by Problem 3} \\
+\THEREFORE \delta'^*(a',x) \in F' &\text{ and } \delta''^*(q'',x) \in F''             & & \text{by CP1} \\
+\THEREFORE x \in L(M') &\text{ and } x \in L(M'')       & & \text{by AC4} \\
+\THEREFORE x \in L(M') &\cap L(M'') 
+\end{align*}
+We have shown
+\[
+L(M) \subseteq L(M') \cap L(M'')
+\]
+Now we will show that $L(M') \cap L(M'') \subseteq L(M)$. 
+
+If $x \in L(M') \cap L(M'')$ then we have the following:
+\begin{align*}
+x \in L(M') &\cap L(M'')                                 & & \\
+x \in L(M')\text{ }x \in L(M'')                          & & \text{by IN1} \\
+\delta'^*(q,x)\in L(M')\text{ }\delta''^*(q,x)\in L(M'') & & \text{by CP2} \\
+\delta^*(q,x)\in F'\times F''                            & & \text{by AC3} \\
+x\in L(M)                                                & & \text{by AC4}
+\end{align*}
+We have shown 
+\[
+L(M') \cap L(M'') \subseteq L(M)
+\]
+
+We conclude that
+\[
+L(M) = L(M') \cap L(M'')
+\]
+QED.
+\\
+
+

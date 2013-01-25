@@ -1,0 +1,70 @@
+
+1(c)
+Let $n \geq 0$.
+We choose $x = a^{2^n}$.
+Note that $x \in A_3$ and $|x| = 2^n \geq n$.
+
+Let $x = uvw$ with $|uv| \leq n$ and $|v| > 0$.
+We want to choose $i_0$ such that
+\[
+u v^{i_0} w \not\in A_3
+\]
+
+[The strategy that we hope will work is to
+show that $2^n < |uv^{i_0}w| < 2^{n+1}$.]
+
+Note that 
+\[
+|u v^{i_0} w| = 2^n + (i_0 - 1)|v|
+\]
+Since $|v| > 0$ if we choose $i_0$ such that
+\[
+i_0 - 1 \geq 1
+\]
+then we must have
+\[
+2^n < 2^n + (i_0 - 1) |v|
+\]
+We also have
+\[
+|v| \leq |uv| 
+\]
+Therefore
+\[
+2^n < 2^n + (i_0 - 1) |v| \leq 2^n + (i_0 - 1) |uv| 
+\]
+We also know that $|uv| \leq n$.
+Therefore
+\[
+2^n < 2^n + (i_0 - 1) |v| \leq 2^n + (i_0 - 1) |uv| \leq 2^n + (i_0 - 1) n
+\]
+Therefore if we choose $i_0$ such that
+\[
+(i_0 - 1) n < 2^n
+\]
+then we have
+\[
+2^n < 2^n + (i_0 - 1) |v| \leq 2^n + (i_0 - 1) n < 2^n + 2^n = 2\cdot 2^n 
+= 2^{n+1}
+\]
+Altogether we have to choose $i_0$ such that 
+\begin{enumerate}
+\item $i_0 - 1 \geq 1$
+\item $(i_0 - 1) n < 2^n$
+\end{enumerate}
+If we choose $i_0 = 2$
+both conditions are indeed
+satisfied:
+\begin{enumerate}
+\item $i_0 - 1 = 2 - 1 \geq 1$
+\item $(i_0 - 1) n = (2 - 1) n = n < 2^n$
+\end{enumerate}
+[The fact that $n < 2^n$ (for $n \geq 0$) can be shown easily.]
+In that case we have
+\[
+2^n < 2^n + (i_0 - 1) |v| < 2^{n+1}
+\]
+and therefore $uv^{i_0}w \underline{\not \in} A_3$ 
+
+By the pumping lemma for regular languages,
+$A_3$ is not regular.

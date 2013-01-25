@@ -1,0 +1,124 @@
+%\newcommand\COURSENAME{Theory of Automata, Languages, and Computation}
+%\newcommand\COURSESHORTNAME{Automata}
+%\newcommand\COURSENUMBER{CISS362/MATH362}
+
+\input{myassignmentpreamble}
+\input{yliow}
+\input{ciss362}
+\renewcommand\TITLE{Assignment 20}
+\renewcommand\AUTHOR{David Campbell}
+\renewcommand\EMAIL{djcampbell2@cougars.ccis.edu}
+
+\begin{document}
+\topmatter
+
+
+The following is the version of the lemma that you must use:
+
+
+{\bf Pumping Lemma (for regular language).}
+Let $L$ be a language (over $\Sigma$).
+Suppose that for each integer $n \geq 0$, there is some 
+$x \in L$ such that $|x| \geq n$ and, 
+if $x = uvw$ where $u,v,w \in \Sigma^*$, then
+there is some integer $i_0 \geq 0$ such that
+\[
+uv^{i_0}w \not\in L
+\]
+Then $L$ is not regular. \qed
+
+I expect all proofs to be properly written.
+This means that not only must the proof be logically correct,
+it must for instance be grammatically correct.
+Proper mathematical notation must be used.
+Make sure you check the spelling of every word.
+
+\newpage
+
+
+Q1. Textbook Q 1.29 and (d) below.
+
+(d) $A_4 = \{ a^{42^n} \mid n \geq 0 \}$
+
+[The answers for (a) and (c) are already given in the book.
+Make sure you study it.
+You only need to complete (b) and (d).]
+
+\SOLUTION
+
+\input{q1a.tex} \newpage
+
+\input{q1b.tex} \newpage
+
+\input{q1c.tex} \newpage
+
+\input{q1d.tex} \newpage
+
+\newpage
+
+
+
+
+Q2. Textbook Q 1.30.
+[This is optional and is not graded.]
+
+\input{q2.tex}
+\newpage
+
+
+
+
+Q3. Textbook Q 1.46.
+
+[I've provided the solution for (b). Make sure you study it.]
+
+\input{q3a.tex} \newpage
+\input{q3b.tex} \newpage
+\input{q3c.tex} \newpage
+\input{q3d.tex} \newpage
+
+
+Q4. Either prove 
+\[
+L = \{ab^nab^n \mid n \geq 0 \}
+\]
+is regular by 
+\underline{constructing}
+a DFA or NFA or regular \underline{expression}
+ for $L$
+or prove it is not regular using the pumping lemma for regular languages.
+
+[HINT: It's \lq\lq intuitively'' clear that it's
+not regular.
+However intuition can be used as a guide, not as a proof.
+WARNING: If you're using the pumping lemma, note that 
+the $uv$ might contains two types of characters, both $a$ and $b$.]
+
+{\bf SOLUTION.}
+
+\input{q4.tex}
+\newpage
+
+Q5. Textbook Q 1.53.
+
+{\bf SOLUTION.}
+
+\input{q5.tex}
+\newpage
+
+
+\newpage
+WARNING!!! SPOILERS ON NEXT PAGE!!!
+
+\newpage
+HINT FOR 1.53:
+In binary addition we have the following:
+\begin{align*}
+1 &= 0 + 1 \\
+11 &= 0 + 11 \\
+111 &= 0 + 111 \\
+1111 &= 0 + 1111
+\end{align*}
+
+
+\end{document}

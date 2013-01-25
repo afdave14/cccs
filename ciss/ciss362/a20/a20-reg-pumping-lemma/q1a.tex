@@ -1,0 +1,30 @@
+
+1(a)
+Let $n \geq 0$.
+We choose $x = 0^n 1^n 2^n$
+Note that $x \in A_1$ and $|x| = n + n + n = 3n \geq n$.
+
+Let $x = uvw$ where
+\[
+|uv| \leq n, \,\,\,\,\, |v| > 0
+\]
+Note that since $uv$ is a prefix of $x = 0^n 1^n 2^n$ and $|uv| \leq n$,
+the only characters appearing in $uv$ is $0$.
+Hence
+\[
+u = 0^{|u|}, \,\,\,\,\,
+v = 0^{|v|}, \,\,\,\,\,
+w = 0^{n - |u| - |v|} 1^n 2^n
+\]
+Therefore if we choose $i_0 = 2$, we obtain
+\begin{align*}
+u v^{i_0} w 
+&= u v^2 w \\
+&= 0^{|u|} \cdot 0^{2|v|} \cdot 0^{n - |u| - |v|} 1^n 2^n \\
+&= 0^{n + |v|} 1^n 2^n
+\end{align*}
+Since $|v| > 0$, $n + |v| \neq n$.
+Hence $u v^{i_0} w \not\in A_1$.
+
+By the pumping lemma for regular language,
+we conclude that $A_1$ is not regular.

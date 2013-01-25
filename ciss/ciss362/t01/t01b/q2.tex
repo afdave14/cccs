@@ -1,0 +1,69 @@
+Before we prove the above statement we will prove the following Lemma that we 
+use later:
+
+{\bf Lemma.}
+Let $\delta: Q \times \Sigma \rightarrow Q$ be any transition function and 
+$\delta^*: Q \times \Sigma^* \rightarrow Q$ be the associated function.
+Then if $q \in Q$ and $c \in \Sigma$ 
+\[
+\delta^*(q, c) = \delta(q, c)
+\]
+
+
+{\it Proof of Lemma.} 
+Let $c \in \Sigma$ (i.e. $c \in \Sigma^*$ of length 1).
+We have the following:
+\begin{align*}
+\delta^*(q, c)
+&= \delta^*(q, c\ep)           & & \text{by C7}\\
+&= \delta^*(\delta(q,c), \ep)            & & \text{by DS3} \\
+&= \delta(q, c)                & & \text{by DS1}
+\end{align*}
+The Lemma is proved.
+QED.
+
+
+We will prove the above statement by Mathematical Induction.
+For $n \geq 1$, we define
+\[
+P(n):
+\text{
+If $x\in \Sigma^*$ with $|x| =n$, then ...
+}
+\]
+
+\underline{Base case.}
+\begin{align*}
+|x| = 0                                                     & & \\
+x = \ep                                                     & & \text{by L5, $\alpha$}\\
+\delta^*((q',q''),x)=\delta^*((q',q''),\ep)& & \text{by $\alpha$} \\
+\delta^*((q',q''),\ep)=(q',q'')                             & & \text{by DS1}\\
+(q',q'')=(\delta'^*(q',\ep),q)                              & & \text{by DS2}\\
+(\delta^*(q',\ep),q)=(\delta'^*(q',\ep),\delta''^*(q'',\ep))& & \text{by DS2}\\
+(\delta'^*(q',\ep),\delta''^*)(q'',\ep))=(\delta'^*(q',x),\delta''^*(q'',x))                                                & & \text{by $\alpha$}
+\end{align*}
+
+
+\underline{Inductive case.} 
+\begin{align*}
+|x| = n + 1                                                                                                     & & \\
+|x|\ne 0,x\ne\ep                                                                                                & & \text{by L6} \\
+x=x'x''\text{ for some }x'\in\Sigma,\text{ }x''\in\Sigma^*                                                      & & \text{by C8, $\emptyset$} \\
+|x'|=1                                                                                                          & & \text{by L2} \\
+|x''| = n                                                                                                       & & \text{by L2} \\
+\delta^*(q'q'',x)=\delta^*(q'q'',x'x'')                                                                         & & \text{by $\emptyset$} \\
+\delta^*(q'q'',x'x'')=(\delta^*(\delta^*(q'q''),x'),x'')                                                        & & \text{by Lemma} \\
+(\delta^*(\delta^*(q'q''),x'),x'')=(\delta^*(\delta'(q',x')),\delta''(q'',x')),x'')                             & & \text{by definition of $\delta$} \\
+(\delta^*(\delta'(q',x')),\delta''(q'',x')),x'')=(\delta'^*(\delta'(q',x'),x''),\delta''^*(\delta''(q'',x'),x'')) & & \text{by Assumption} \\
+(\delta'^*(\delta'(q',x'),x''),\delta''^*(\delta''(q'',x'),x''))=(\delta'^*(q',x'x''),\delta''^*(q'',x'x''))    & & \text{by DS4} \\
+(\delta'^*(q',x'x''),\delta''^*(q'',x'x''))=(\delta'^*(q',x),\delta''^*(q'',x))                                 & & \text{by $\emptyset$}
+\end{align*}
+
+Hence by Mathematical Induction for all $n \geq 1$
+\[
+P(n+1)\text{ is true.}
+\]
+We conclude that if $x \in \Sigma^*$, then
+\[
+(\delta^*((q',q''),x))=(\delta'^*(q',x),\delta''^*(q'',x))  
+\]

@@ -1,0 +1,42 @@
+We will prove the above statement by Mathematical Induction.
+For $n \geq ?$, we define
+\[
+P(n):
+\text{
+If $x,y \in \Sigma^*$, then $\delta^* (q, xy) = \delta^*(\delta^*(q,x),y)$
+}
+\]
+
+\underline{Base case.}
+\begin{align*}
+|x| = 0                                                                             & & \\
+|x| = \epsilon                                                                      & & \text{by L5} \\
+\delta^*(q,xy)=\delta^*(q,\epsilon y)                                               & & \\
+\delta^*(\delta^*(q,\epsilon),\epsilon y)=\delta^*(\delta^*(q,\epsilon),\epsilon y) & & \text{by DS2} \\
+\delta^*(\delta^*(q,\epsilon),y)=\delta^*(\delta^*(q,\epsilon),y)                   & & \text{by C4}
+\end{align*}
+
+\underline{Inductive case.}
+\begin{align*}
+|x| = n + 1                                                     & & \\
+|x| \ne 0                                                       & & \\
+x \ne \epsilon                                                  & & \text{by L6} \\
+x = x'x''\text{ for some } x' \in \Sigma\text{, }x''\in\Sigma^* & & \text{by C8} \\
+|x'| = 1                                                        & & \text{by L2} \\
+|x''| = n                                                       & & \text{by L2} \\
+\delta^*(q,xy)=\delta^*(q,x'x''y)                               & & \\
+\delta^*(q,x'x''y)=\delta^*(\delta(q,x'),x''y)                  & & \text{by DS3} \\
+\delta^*(\delta(q,x'),x''y)=\delta^*(\delta^*(q,x'),x''y)       & & \text{by P(N)} \\
+\delta^*(\delta^*(q,x'),x''y)=\delta^*(\delta^*(q,x'x''),y)     & & \text{by DS4} \\
+\delta^*(\delta^*(q,x'x''),y)=\delta^*(\delta^*(q,x),y)
+\end{align*}
+
+Hence by Mathematical Induction for all $n \geq 1$
+\[
+P(N+1)\text{ is true.}
+\]
+We conclude that if $x,y \in \Sigma^*$, then
+\[
+\delta^*(q, xy) = \delta^*(\delta^*(q, x), y)
+\]
+QED.

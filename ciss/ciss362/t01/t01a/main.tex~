@@ -1,0 +1,47 @@
+\input{myassignmentpreamble}
+\input{yliow}
+\input{ciss362}
+
+\renewcommand\TITLE{Test 1}
+
+\renewcommand\AUTHOR{John Doe}
+\renewcommand\EMAIL{jdoe@jdoe.com}
+
+\begin{document}
+\topmatter
+
+
+\newcommand\tf{T or F or M: }
+
+Q1. Our alphabet is $\Sigma = \{a, b, c\}$.
+
+\begin{enumerate}
+
+\item \tf $a$ is a regular expression
+
+\item \tf $a\cup b$ is a regular expression
+
+\item \tf $a \cdot \cup c$ is a regular expression
+
+\item \tf $a \cup^* b$ is a regular expression
+
+\item \tf $\{c\}$ is a regular expression
+
+\item \tf $c \cdot \emptyset $ is a regular expression
+
+\item \tf $\ep \cdot \ep \cdot \ep$ is a regular expression
+
+\item \tf $\emptyset^*$ is a regular expression
+
+\item \tf $a^*)$ is a regular expression
+
+\item \tf $a\cdot b \cup c$ is a regular expression
+
+\item \tf $a^b$ is a regular expression
+
+\end{enumerate}
+
+? Design an NFA that accepts $\{a, ab, bab\}^*$.
+
+
+\end{document}

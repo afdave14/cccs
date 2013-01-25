@@ -1,0 +1,186 @@
+\input{myassignmentpreamble}
+\input{yliow}
+\input{ciss362}
+
+\renewcommand\TITLE{Test 1 Part A}
+
+\renewcommand\AUTHOR{David Campbell}
+\renewcommand\EMAIL{djcampbell2@cougars.ccis.edu}
+\newcommand\tf{T or F or M: }
+
+\begin{document}
+\topmatter
+
+The following instructions on defining a DFA or an NFA
+must be followed.
+
+Here's an example on how to define an NFA:
+\begin{console}
+automata:nfa
+sigma:a,b
+states:q0,q1,q2,q3,q4
+start:q0
+accept:q0,q1
+transitions:
+q0,a,q0
+q0,b,q1
+q1,e,q3
+\end{console}
+The letter \verb!e! is used for $\epsilon$.
+(None of the $\Sigma$ in this test will use \verb!e!.)
+
+Here's an example on how to define a DFA:
+\begin{console}
+automata:dfa
+sigma:a,b
+states:q0,q1
+start:q0
+accept:q1
+transitions:
+q0,a,q0
+q0,b,q1
+q1,a,q1
+q1,b,q0
+\end{console}
+
+
+
+
+\newpage
+
+Q1. Our alphabet is $\Sigma = \{a, b, c\}$.
+
+\begin{enumerate}
+
+\item \tf 1 + 1 = 2
+
+\item \tf $a$ is a regular expression
+
+\item \tf $a\cup b$ is a regular expression
+
+\item \tf $a \cdot \cup c$ is a regular expression
+
+\item \tf $a \cup^* b$ is a regular expression
+
+\item \tf $\{c\}$ is a regular expression
+
+\item \tf $c \cdot \emptyset $ is a regular expression
+
+\item \tf $\ep \cdot \ep \cdot \ep$ is a regular expression
+
+\item \tf $\emptyset^*$ is a regular expression
+
+\item \tf $a^*)$ is a regular expression
+
+\item \tf $a\cdot b \cup c$ is a regular expression
+
+\item \tf $a^b$ is a regular expression
+
+\item \tf $a \in L(a \cup b)$
+
+\item \tf $ab \in L(a^* \cup b^*)$
+
+\item \tf $ab \in L((a \cup b)^*)$
+
+\item \tf $a \in L(a \cdot \emptyset)$
+
+\item \tf $ab \in L(a \cdot (a \cup b) \cdot c^*)$
+
+\item \tf $ab \in L((a \cup b) \cdot (b \cup c))$
+
+\item \tf $ab \in L((a \cup \overline{b}))$
+
+\item \tf $a^4 b^2 \in L(a^* \cup b) L(a \cup b^*)$
+
+\end{enumerate}
+
+SOLUTION ON NEXT PAGE ...
+
+\newpage
+
+\SOLUTION
+\input{q01.tex}
+
+
+
+\newpage
+
+Q2.
+For the NFA $N$ given below, 
+using the subset construction, construct a DFA $M$ that accepts
+the same language accepted by $N$. 
+Do not include states which are not 
+reachable from the initial state of your DFA.
+
+\begin{center}
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,auto,initial text=]
+\node[state,initial] (A) at (  0,  0) {$q_0$};
+\node[state,accepting] (C) at (  4,  0) {$q_2$};
+\node[state] (B) at (  2,  0) {$q_1$};
+\node[state] (E) at (  8,  0) {$q_4$};
+\node[state,accepting] (D) at (  6,  0) {$q_3$};
+
+\path[->]
+(A) edge [loop above] node {$b$} ()
+(A) edge [bend left=0,pos=0.5,above] node {$\ep$} (B)
+(B) edge [bend left=0,pos=0.5,above] node {$a,b$} (C)
+(B) edge [bend left=40,pos=0.5,above] node {$a$} (D)
+(D) edge [bend left=40,pos=0.5,below] node {$b$} (B)
+(C) edge [bend left=35,pos=0.5,above] node {$a$} (E)
+(C) edge [bend left=0,pos=0.5,above] node {$\ep$} (D)
+(D) edge [bend left=10,pos=0.5,above] node {$\ep$} (E)
+(E) edge [bend left=10,pos=0.5,below] node {$b$} (D)
+
+;
+\end{tikzpicture}
+\end{center}
+
+\SOLUTION
+
+\input{q02.tex}
+
+
+
+
+\newpage
+
+Q3. Design an NFA that accepts $\{a, ab, bab\}^*$.
+
+\SOLUTION
+
+\input{q03.tex}
+
+
+
+
+
+\newpage
+
+Q4. Recall that the \lq\lq complement construction''
+works for a DFA, i.e., if you exchange
+\[
+\text{accept $\leftrightarrow$ non-accept states}
+\]
+the resulting DFA will accept the complement of the language
+accepting by the original DFA.
+
+Does it work with NFAs?
+In other words, if you exchange 
+\[
+\text{accept $\leftrightarrow$ non-accept states}
+\]
+for an NFA,
+will the 
+resulting NFA accept the complement of the language
+accepting by the original NFA?
+If it works, prove it.
+If it does not, provide a minimal counterexample.
+(Minimal in this case means the one with least number of 
+states.)
+
+\SOLUTION
+
+\input{q04.tex}
+
+
+\end{document}

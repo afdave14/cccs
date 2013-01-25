@@ -1,0 +1,37 @@
+
+
+3(b)
+Let $L = \{0^m 1^n \mid m \neq n \}$.
+
+We will prove this by contradiction.
+Assume that $L$ is regular.
+
+We already know that complementation is a regular operator,
+i.e. if $L'$ is a regular language, then
+$\overline{L'}$ is also regular.
+Since, according to our assumption, $L$ is regular,
+\[
+\overline{L} = \{x \in \{0,1\}^* \mid x \text{ is not of the form } 0^m 1^n
+\text{ for } m \neq n \}
+\] 
+is also regular
+Note that $\{0^n 1^n \mid n \geq 0\} \subseteq \overline{L}$.
+(WARNING: $\{0^n 1^n \mid n \geq 0\} \neq \overline{L}$
+since for instance $1010 \in \overline{L}$.)
+
+Note that intersection is a regular operator, i.e.
+if $L', L''$ are regular, then $L' \cup L''$ is also regular.
+$L(0^*1^*)$ is regular since it is the language accepted by the
+regular expression $0^* 1^*$.
+Therefore, since from the above $\overline{L}$ is regular,
+\[
+\overline{L} \underline{\cap} L(0^* 1^*) = \{0^n 1^n \mid n \geq 0\}
+\]
+is also regular.
+
+This is a contradiction since we have already proven that 
+$\{0^n 1^n \mid n \geq 0\}$
+is not regular.
+Hence our assumption that $L = \{0^m 1^n \mid m \neq n \}$
+is regular cannot hold.
+Therefore $L$ must be non-regular.
