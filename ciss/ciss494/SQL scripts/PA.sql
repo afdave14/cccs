@@ -1,0 +1,2 @@
+SELECT (AB + BB + HBP + SH + SF) AS PA
+FROM Batting
